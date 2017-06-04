@@ -5,7 +5,7 @@ let HtmlWebpackPlugin = require('html-webpack-plugin');
 let CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-    entry: ['./src/js/app.js', './src/scss/styles.scss'],
+    entry: ['./src/js/entry.js', './src/scss/styles.scss'],
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, './dist')
@@ -37,11 +37,14 @@ module.exports = {
                         loader: 'file-loader',
                         options: {
                             name: '[name].[ext]',
-                            outputPath: 'assets/',
-                            publicPath: 'assets/'
+                            outputPath: 'assets/'
                         }
                     }
                 ]
+            },
+            {
+                test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+                loader: 'url-loader?limit=100000'
             }
         ]
     },
