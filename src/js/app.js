@@ -12,26 +12,26 @@ $('.elevatable').click(function () {
         width: target.offsetWidth
     };
     let content = clone.find('.card-content');
-    clone.find('.close-overlay').click(closeListener);
-    clone.css(animationConfig);
-    overlay.open(clone, animationConfig, closeCallback(content, clone));
+    showImageData(content, clone.find('img'), function () {
+        clone.find('.close-overlay').click(closeListener);
+        clone.css(animationConfig);
 
-    showImageData(content, clone.find('img'));
+        overlay.open(clone, animationConfig, closeCallback(content, clone));
 
-    $(content).slideDown(500);
-    clone.animate({
-        width: '50%',
-        marginLeft: window.innerWidth / 4,
-        marginTop: 20
-    }, {duration: 500});
-    clone.addClass('elevated');
+        $(content).slideDown(500);
+        clone.animate({
+            width: '50%',
+            marginLeft: window.innerWidth / 4,
+            marginTop: 20
+        }, {duration: 500});
+        clone.addClass('elevated');
+    });
 });
 
-function showImageData(container, image) {
-    let result = extractImageData(image, function () {
-        console.log(this);
+function showImageData(container, image, callback) {
+    let result = extractImageData(image, function (exifData) {
         let template = `<div class="row">
-                ${this.map(tag => `
+                ${exifData.map(tag => `
                     <div class="col s12 m6">
                         <i class="material-icons">${tag.icon}</i>
                         <span>${tag.displayName}: </span>
@@ -44,6 +44,7 @@ function showImageData(container, image) {
     if (!result) {
         $(container).find('.exif-data').append(`<span>Failed to load EXIF data. Try again.</span>`);
     }
+    callback.call();
 }
 
 function closeCallback(content, clone) {
