@@ -3,6 +3,7 @@ let webpack = require('webpack');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
 let CleanWebpackPlugin = require('clean-webpack-plugin');
+let CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: ['./src/js/entry.js', './src/scss/styles.scss'],
@@ -31,7 +32,7 @@ module.exports = {
                 use: ['html-loader']
             },
             {
-                test: /\.(jpg|png)$/,
+                test: /\.(jpg|png|mp4)$/,
                 use: [
                     {
                         loader: 'file-loader',
@@ -50,7 +51,7 @@ module.exports = {
     },
     plugins: [
         new webpack.ProvidePlugin({
-           $: 'jquery'
+            $: 'jquery'
         }),
         new ExtractTextPlugin('styles.bundle.css'),
         new HtmlWebpackPlugin({
@@ -58,7 +59,5 @@ module.exports = {
         }),
         new CleanWebpackPlugin(['dist'])
     ],
-    devServer: {
-
-    }
+    devServer: {}
 };

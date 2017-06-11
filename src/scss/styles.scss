@@ -60,7 +60,7 @@
     box-sizing: border-box;
     .card {
       display: inline-block;
-      i {
+      .card-image i {
         display: block;
         opacity: 0;
         position: absolute;
@@ -74,6 +74,20 @@
       }
       .card-content {
         display: none;
+        .exif-data .col {
+          height: 40px;
+          span {
+            display: block;
+            height: 40px;
+          }
+          i {
+            margin: 0 10px;
+          }
+          span, i {
+            float: left;
+            line-height: 40px;
+          }
+        }
       }
     }
     &.elevated {
