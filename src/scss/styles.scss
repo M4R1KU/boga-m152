@@ -1,6 +1,13 @@
 * {
   font-family: 'Raleway', sans-serif;
 }
+h1, h2, h3, h4, h5, h6, .card-title, #nav * {
+  font-family: 'Love Ya Like A Sister', cursive !important;
+}
+
+.card-title {
+  text-shadow: 1px 1px 4px #000000;
+}
 
 #nav-image-wrapper {
   width: 100%;
@@ -15,6 +22,7 @@
     background-color: transparent;
     box-shadow: none;
     z-index: 1010;
+    font-size: 2em;
     > a {
       padding-left: 10px;
     }
