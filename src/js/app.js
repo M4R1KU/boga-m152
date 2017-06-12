@@ -3,6 +3,12 @@ import {extractImageData} from "./exif";
 
 let overlay = new Overlay();
 
+$(window).resize(function () {
+   if (overlay.opened) {
+       overlay.close();
+   }
+});
+
 $('.elevatable').click(function () {
     let target = this;
     let clone = $(target).clone();
