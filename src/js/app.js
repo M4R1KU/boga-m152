@@ -20,8 +20,8 @@ $('.elevatable').click(function () {
 
         $(content).slideDown(500);
         clone.animate({
-            width: '50%',
-            marginLeft: window.innerWidth / 4,
+            width: isMobile() ? '90%' : '50%',
+            marginLeft: window.innerWidth / (isMobile() ? 20 : 4),
             marginTop: 20
         }, {duration: 500});
         clone.addClass('elevated');
@@ -35,7 +35,7 @@ function showImageData(container, image, callback) {
                     <div class="col s12 m6">
                         <i class="material-icons">${tag.icon}</i>
                         <span>${tag.displayName}: </span>
-                        <span>${tag.value}</span>
+                        <p>${tag.value}</p>
                     </div>
                 `).join('')}
             </div>`;
@@ -58,4 +58,8 @@ function closeListener() {
     if (overlay.opened) {
         overlay.close();
     }
+}
+
+function isMobile() {
+    return window.innerWidth < 700;
 }

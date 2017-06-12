@@ -4,6 +4,7 @@
 
 #nav-image-wrapper {
   width: 100%;
+  position: relative;
   img {
     width: inherit;
   }
@@ -20,7 +21,27 @@
 
   .welcome {
     position: absolute;
-    margin-top: 10%;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    h2 {
+      width: 100%;
+      line-height: 1;
+      text-align: center;
+      margin-bottom: 50px;
+      color: white;
+      @media screen and (max-width: 675px) {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+      }
+      @media screen and (max-width: 400px) {
+        margin-bottom: 10px;
+      }
+    }
   }
 }
 
@@ -79,18 +100,22 @@
       }
       .card-content {
         display: none;
-        .exif-data .col {
-          height: 40px;
-          span {
-            display: block;
-            height: 40px;
+        .exif-data {
+          .row {
+            margin: 0;
           }
-          i {
-            margin: 0 10px;
-          }
-          span, i {
-            float: left;
-            line-height: 40px;
+          .col {
+            height: 60px;
+            margin-bottom: 10px;
+            i, span {
+              float: left;
+              display: block;
+              height: 20px;
+              line-height: 20px;
+            }
+            p {
+              clear: both;
+            }
           }
         }
       }
@@ -105,3 +130,4 @@
     background-color: rgba(0, 0, 0, 0.7)
   }
 }
+
