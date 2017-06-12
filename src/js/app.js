@@ -18,7 +18,8 @@ $('.elevatable').click(function () {
         width: target.offsetWidth
     };
     let content = clone.find('.card-content');
-    showImageData(content, clone.find('img'), function () {
+    $(target).find('img').attr('id', 'elevated-img');
+    showImageData(content, function () {
         clone.find('.close-overlay').click(closeListener);
         clone.css(animationConfig);
 
@@ -34,8 +35,9 @@ $('.elevatable').click(function () {
     });
 });
 
-function showImageData(container, image, callback) {
-    let result = extractImageData(image, function (exifData) {
+function showImageData(container, callback) {
+    let img = document.getElementById('elevated-img');
+    let result = extractImageData(img, function (exifData) {
         let template = `<div class="row">
                 ${exifData.map(tag => `
                     <div class="col s12 m6">
@@ -57,6 +59,7 @@ function closeCallback(content, clone) {
     return () => {
         $(content).slideUp(500);
         clone.removeClass('elevated');
+        $('#elevated-img').removeAttr('id');
     }
 }
 

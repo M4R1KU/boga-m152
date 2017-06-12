@@ -13,7 +13,6 @@
   "license": "ISC",
   "dependencies": {
     "copy-webpack-plugin": "^4.0.1",
-    "exif-js": "^2.2.1",
     "jquery": "^3.2.1",
     "material-design-icons": "^3.0.1",
     "materialize-css": "^0.98.2",

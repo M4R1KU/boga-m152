@@ -1,5 +1,5 @@
-import EXIF from "exif-js";
-import * as md5 from "md5";
+import EXIF from'./lib/exif-lib';
+let md5 = require('md5');
 
 export class ExifStore {
     constructor() {
@@ -72,13 +72,12 @@ const EXIF_MAPPING = [
 ];
 
 export function extractImageData(image, callback) {
-    let img = image[0];
-    let cache = exifStore.get(md5(img.outerHTML));
+    let cache = exifStore.get(md5(image.outerHTML));
     if (cache) {
         callback.call(null, cache);
         return true;
     }
-    return EXIF.getData(img, function () {
+    return EXIF.getData(image, function () {
         let output = EXIF_MAPPING
             .map(mapping => {
                 let value = mapping.transform ? mapping.transform(this) : EXIF.getTag(this, mapping.tagName);
@@ -88,7 +87,7 @@ export function extractImageData(image, callback) {
                     value: value
                 }
             });
-        exifStore.putIfAbsent(md5(img.outerHTML), output);
+        exifStore.putIfAbsent(md5(image.outerHTML), output);
         callback.call(null, output);
     });
 }
